@@ -8,25 +8,25 @@ require __DIR__ . '/../bootstrap.php';
 
 class InputEntry
 {
-    public int    $minOccurences;
-    public int    $maxOccurences;
+    public int    $index1;
+    public int    $index2;
     public string $requiredChar;
     public string $password;
 
-    public function __construct(int $minOccurences, int $maxOccurences, string $requiredChar, string $password)
+    public function __construct(int $index1, int $index2, string $requiredChar, string $password)
     {
-        $this->minOccurences = $minOccurences;
-        $this->maxOccurences = $maxOccurences;
-        $this->requiredChar  = $requiredChar;
-        $this->password      = $password;
+        $this->index1       = $index1;
+        $this->index2       = $index2;
+        $this->requiredChar = $requiredChar;
+        $this->password     = $password;
     }
 
     public function __toString(): string
     {
         return sprintf(
             '%d-%d %s: %s',
-            $this->minOccurences,
-            $this->maxOccurences,
+            $this->index1,
+            $this->index2,
             $this->requiredChar,
             $this->password
         );
@@ -40,13 +40,13 @@ $solver = function (): int {
 
     $mapLine = function (string $line): InputEntry {
         if (preg_match(
-            '/^(?<minOcurrences>\d+)-(?<maxOcurrences>\d+) (?<requiredChar>\w): (?<password>\w+)$/',
+            '/^(?<mustContainIndex>\d+)-(?<mustNotContainIndex>\d+) (?<requiredChar>\w): (?<password>\w+)$/',
             $line,
             $matches
         )) {
             return new InputEntry(
-                intval($matches['minOcurrences']),
-                intval($matches['maxOcurrences']),
+                intval($matches['mustContainIndex']),
+                intval($matches['mustNotContainIndex']),
                 $matches['requiredChar'],
                 $matches['password']
             );
@@ -56,11 +56,20 @@ $solver = function (): int {
     };
 
     $checkPassword = function (InputEntry $inputEntry) {
-        $count = mb_substr_count($inputEntry->password, $inputEntry->requiredChar);
+        $password = $inputEntry->password;
 
-        return
-            $count >= $inputEntry->minOccurences
-            && $count <= $inputEntry->maxOccurences;
+        // Input is 1-based, mb_substr is 0-based
+        $indices = [$inputEntry->index1 - 1, $inputEntry->index2 - 1];
+
+        $requiredChar = $inputEntry->requiredChar;
+
+        $numberOfOccurences = Collection
+            ::from($indices)
+            ->filter(fn($index) => mb_substr($password, $index, 1) === $requiredChar)
+            ->size();
+
+
+        return $numberOfOccurences === 1;
     };
 
     $count = Collection
