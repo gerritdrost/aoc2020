@@ -2,7 +2,9 @@
     "name": "gerritdrost/aoc2020",
     "type": "project",
     "require": {
-        "php": ">=7.4"
+        "php": ">=7.4",
+        "ext-mbstring": "*",
+        "dusank/knapsack": "^10.0"
     },
     "authors": [
         {
