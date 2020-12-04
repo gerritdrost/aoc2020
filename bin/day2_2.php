@@ -8,18 +8,12 @@ require __DIR__ . '/../bootstrap.php';
 
 class InputEntry
 {
-    public int    $index1;
-    public int    $index2;
-    public string $requiredChar;
-    public string $password;
-
-    public function __construct(int $index1, int $index2, string $requiredChar, string $password)
-    {
-        $this->index1       = $index1;
-        $this->index2       = $index2;
-        $this->requiredChar = $requiredChar;
-        $this->password     = $password;
-    }
+    public function __construct(
+        public int $index1,
+        public int $index2,
+        public string $requiredChar,
+        public string $password
+    ) { }
 
     public function __toString(): string
     {

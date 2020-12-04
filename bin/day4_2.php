@@ -40,14 +40,11 @@ $solver = function (): int {
         $unit  = substr($hgt, -2);
         $value = intval(substr($hgt, 0, -2));
 
-        switch ($unit) {
-            case 'cm':
-                return $intBetween($value, 150, 193);
-            case 'in':
-                return $intBetween($value, 59, 76);
-            default:
-                return false;
-        }
+        return match ($unit) {
+            'cm' =>  $intBetween($value, 150, 193),
+            'in' =>  $intBetween($value, 59, 76),
+            default => false
+        };
     };
     $validateHcl = fn ($doc) => preg_match('/^#[0-9a-f]{6}$/', $doc['hcl']) === 1;
     $validateEcl = fn ($doc) => in_array($doc['ecl'], ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth']);

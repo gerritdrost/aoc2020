@@ -8,18 +8,12 @@ require __DIR__ . '/../bootstrap.php';
 
 class InputEntry
 {
-    public int    $minOccurences;
-    public int    $maxOccurences;
-    public string $requiredChar;
-    public string $password;
-
-    public function __construct(int $minOccurences, int $maxOccurences, string $requiredChar, string $password)
-    {
-        $this->minOccurences = $minOccurences;
-        $this->maxOccurences = $maxOccurences;
-        $this->requiredChar  = $requiredChar;
-        $this->password      = $password;
-    }
+    public function __construct(
+        public int $minOccurences,
+        public int $maxOccurences,
+        public string $requiredChar,
+        public string $password
+    ) { }
 
     public function __toString(): string
     {

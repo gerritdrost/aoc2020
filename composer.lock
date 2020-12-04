@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6ce549e7fe04ba6b9cb5ae950a58a8da",
+    "content-hash": "9ad20708db8866e2b063618cc7eddec3",
     "packages": [
         {
             "name": "dusank/knapsack",
@@ -76,7 +76,9 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.4"
+        "php": ">=8.0",
+        "ext-ctype": "*",
+        "ext-mbstring": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"
