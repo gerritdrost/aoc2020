@@ -6,13 +6,13 @@ use Generator;
 
 class Generators
 {
-    public static function linesFromHandle($handle): Generator
+    public static function linesFromHandle($handle, bool $skipEmptyLines = true): Generator
     {
-        $generator = function() use ($handle) {
+        $generator = function() use ($handle, $skipEmptyLines) {
             while (($line = fgets($handle)) !== false) {
                 $line = trim($line);
 
-                if (empty($line)) {
+                if ($skipEmptyLines && empty($line)) {
                     continue;
                 }
 
