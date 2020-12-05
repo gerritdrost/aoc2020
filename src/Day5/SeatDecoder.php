@@ -5,7 +5,6 @@ namespace GerritDrost\AoC2020\Day5;
 use DusanKasan\Knapsack\Collection;
 use GerritDrost\AoC2020\Utils\Strings;
 use InvalidArgumentException;
-use RuntimeException;
 
 class SeatDecoder
 {
