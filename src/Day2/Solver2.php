@@ -3,7 +3,7 @@
 namespace GerritDrost\AoC2020\Day2;
 
 use DusanKasan\Knapsack\Collection;
-use GerritDrost\AoC2020\Generators;
+use GerritDrost\AoC2020\Utils\Generators;
 use GerritDrost\AoC2020\Solver;
 
 class Solver2 implements Solver

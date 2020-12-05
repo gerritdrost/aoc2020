@@ -1,6 +1,6 @@
 <?php
 
-namespace GerritDrost\AoC2020;
+namespace GerritDrost\AoC2020\Utils;
 
 class Files
 {

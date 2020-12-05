@@ -2,7 +2,7 @@
 
 namespace GerritDrost\AoC2020\Day1;
 
-use GerritDrost\AoC2020\Generators;
+use GerritDrost\AoC2020\Utils\Generators;
 use GerritDrost\AoC2020\Solver;
 use RuntimeException;
 

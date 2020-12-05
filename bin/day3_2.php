@@ -1,6 +1,6 @@
 <?php
 
-use GerritDrost\AoC2020\Files;
+use GerritDrost\AoC2020\Utils\Files;
 
 require __DIR__ . '/../bootstrap.php';
 

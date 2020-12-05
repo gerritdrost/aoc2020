@@ -1,8 +1,6 @@
 <?php
 
-namespace GerritDrost\AoC2020;
-
-use Generator;
+namespace GerritDrost\AoC2020\Utils;
 
 class Arrays
 {

@@ -1,24 +1,10 @@
 <?php
 
-use DusanKasan\Knapsack\Collection;
-use GerritDrost\AoC2020\Arrays;
-use GerritDrost\AoC2020\Files;
-use GerritDrost\AoC2020\Generators;
+use GerritDrost\AoC2020\Utils\Files;
 
 require __DIR__ . '/../bootstrap.php';
 
-$solver = function (): int {
-    $inputHandle = Files::openForReading(PROJECT_ROOT_DIR . '/res/day/4/input');
-    $lines       = Generators::linesFromHandle($inputHandle, false);
+$solver = new GerritDrost\AoC2020\Day5\Solver1();
 
-
-    $validDocs = Collection
-        ::from($lines)
-        ->size();
-
-    echo "Valid documents: {$validDocs}\n";
-
-    return 0;
-};
-
-exit($solver());
+$inputHandle = Files::openForReading(PROJECT_ROOT_DIR . '/res/day/5/input');
+echo $solver->solve($inputHandle) . PHP_EOL;
