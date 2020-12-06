@@ -9,11 +9,7 @@ class Utils
 {
     public static function readDocs($inputHandle): Collection
     {
-        $lines = Generators::linesFromHandle($inputHandle, false);
-
-        $docLinesToDocString = function (Collection $docLines) {
-            return $docLines->reduce(fn ($tmp, $line) => trim("{$tmp} {$line}"), '');
-        };
+        $lineGroups = Generators::lineGroupsFromHandle($inputHandle);
 
         $docStringToMap = fn (string $docString) => Collection
             ::from(explode(' ', $docString))
@@ -23,9 +19,8 @@ class Utils
             ->toArray();
 
         return Collection
-            ::from($lines)
-            ->partitionBy(fn ($line) => empty($line))
-            ->map($docLinesToDocString)
+            ::from($lineGroups)
+            ->map(fn($docLines) => implode(' ', $docLines))
             ->filter()
             ->map($docStringToMap);
     }
