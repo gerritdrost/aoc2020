@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?php
+
+use GerritDrost\AoC2020\SolveCommand;
+use Symfony\Component\Console\Application;
+
+require __DIR__ . '/../bootstrap.php';
+
+$command = new SolveCommand();
+
+$app = new Application('solve');
+$app->add($command);
+$app->setDefaultCommand($command->getName(), true);
+$app->run();
