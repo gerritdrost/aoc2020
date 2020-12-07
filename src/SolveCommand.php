@@ -41,12 +41,13 @@ class SolveCommand extends Command
     {
         $day = self::sanitizeDay($input->getArgument('day'));
         $part = self::sanitizePart($input->getArgument('part'));
+        $overridePath = $input->getOption('input');
 
         // Do some nasty stuff to dynamically load the right solver.
         $solverClass = __NAMESPACE__ . "\Day{$day}\Solver{$part}";
 
         if (!class_exists($solverClass, true)) {
-            throw new RuntimeException("Solution to day ${day} puzzle {$part} not implemented yet");
+            throw new RuntimeException("Solution to day ${day} part {$part} not implemented yet");
         }
 
         $solver = new $solverClass();
@@ -84,11 +85,11 @@ class SolveCommand extends Command
         return $day;
     }
 
-    private static function sanitizePart(string $puzzle): int {
-        if (!in_array($puzzle, ['1', '2'], true)) {
-            throw new InvalidArgumentException("Puzzle can either be '1' or '2', got {$puzzle}");
+    private static function sanitizePart(string $part): int {
+        if (!in_array($part, ['1', '2'], true)) {
+            throw new InvalidArgumentException("Part can either be '1' or '2', got {$part}");
         }
 
-        return intval($puzzle);
+        return intval($part);
     }
 }
