@@ -4,7 +4,6 @@ namespace GerritDrost\AoC2020\Day8;
 
 use DusanKasan\Knapsack\Collection;
 use GerritDrost\AoC2020\Solver;
-use GerritDrost\AoC2020\Utils\Generators;
 
 class Solver2 implements Solver
 {
