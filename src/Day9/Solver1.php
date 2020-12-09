@@ -9,7 +9,9 @@ use InvalidArgumentException;
 
 class Solver1 implements Solver
 {
-    public function __construct(private int $preambleSize = 25) { }
+    public function __construct(private int $preambleSize = 25)
+    {
+    }
 
     /**
      * @param int[]|resource $input
@@ -26,9 +28,26 @@ class Solver1 implements Solver
             throw new InvalidArgumentException("Expected parameter \$input to be either an array or a handle");
         }
 
+        /*
+         * Provided an array of integers, computes an array of unique sums of all pairs from the array provided.
+         */
+        $sumsMapper = function (Collection $lastNumberCollection) {
+            $lastNums = $lastNumberCollection->values()->toArray();
+            $size     = count($lastNums);
+
+            $products = [];
+            for ($i = 0; $i < ($size - 1); $i++) {
+                for ($j = $i + 1; $j < $size; $j++) {
+                    $products[] = $lastNums[$i] + $lastNums[$j];
+                }
+            }
+
+            return array_unique($products);
+        };
+
         $lastNumberSums = Collection::from($ints)
             ->partition($this->preambleSize, 1)
-            ->map(fn (Collection $nums) => Utils::computeSums($nums->values()->toArray()));
+            ->map($sumsMapper);
 
         $numbersWithoutPreamble = Collection
             ::from($ints)
