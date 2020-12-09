@@ -28,13 +28,11 @@ class Solver1 implements Solver
 
         $lastNumberSums = Collection::from($ints)
             ->partition($this->preambleSize, 1)
-            ->map(fn (Collection $nums) => Utils::computeSums($nums->values()->toArray()))
-            ->realize();
+            ->map(fn (Collection $nums) => Utils::computeSums($nums->values()->toArray()));
 
         $numbersWithoutPreamble = Collection
             ::from($ints)
-            ->drop($this->preambleSize)
-            ->realize();
+            ->drop($this->preambleSize);
 
         return $numbersWithoutPreamble
             ->zip($lastNumberSums)
