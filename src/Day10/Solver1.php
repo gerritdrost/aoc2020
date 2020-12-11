@@ -15,7 +15,7 @@ class Solver1 implements Solver
 
         return Collection::from($adapters)
             ->prepend(0)
-            ->append(max($adapters) + 3)
+            ->append(end($adapters) + 3)
             ->partition(2, 1)
             ->map(fn(Collection $pair) => $pair->second() - $pair->first())
             ->frequencies()
