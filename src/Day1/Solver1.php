@@ -10,7 +10,7 @@ class Solver1 implements Solver
 {
     public function solve($inputHandle): int
     {
-        $numbers = iterator_to_array(Generators::intLinesFromHandle($inputHandle));
+        $numbers = iterator_to_array(int_lines_from_handle($inputHandle));
         sort($numbers);
 
         $size = count($numbers);

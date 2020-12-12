@@ -10,7 +10,7 @@ class Solver1 implements Solver
 {
     public function solve($inputHandle): int
     {
-        $lineGroups = Generators::lineGroupsFromHandle($inputHandle);
+        $lineGroups = linegroups_from_handle($inputHandle);
 
         return Collection::from($lineGroups)
             /*

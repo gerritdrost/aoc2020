@@ -10,7 +10,7 @@ class Solver2 implements Solver
 {
     public function solve($inputHandle): int
     {
-        $lines = Arrays::linesFromHandle($inputHandle);
+        $lines = iterator_to_array(lines_from_handle($inputHandle));
         $width = strlen($lines[0]);
 
         $treeProduct = 1;

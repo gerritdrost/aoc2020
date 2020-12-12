@@ -3,14 +3,13 @@
 namespace GerritDrost\AoC2020\Day6;
 
 use DusanKasan\Knapsack\Collection;
-use GerritDrost\AoC2020\Utils\Generators;
 use GerritDrost\AoC2020\Solver;
 
 class Solver2 implements Solver
 {
     public function solve($inputHandle): int
     {
-        $lineGroups = Generators::lineGroupsFromHandle($inputHandle);
+        $lineGroups = linegroups_from_handle($inputHandle);
 
         return Collection::from($lineGroups)
             /*

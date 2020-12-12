@@ -9,7 +9,7 @@ class Utils
 {
     public static function readDocs($inputHandle): Collection
     {
-        $lineGroups = Generators::lineGroupsFromHandle($inputHandle);
+        $lineGroups = linegroups_from_handle($inputHandle);
 
         $docStringToMap = fn (string $docString) => Collection
             ::from(explode(' ', $docString))

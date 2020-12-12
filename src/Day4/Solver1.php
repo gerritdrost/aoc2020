@@ -12,7 +12,7 @@ class Solver1 implements Solver
         $requiredFields = ['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid'];
 
         return Utils::readDocs($inputHandle)
-            ->filter(Predicates::arrayHasKeys($requiredFields))
+            ->filter(fn_array_has_keys($requiredFields))
             ->size();
     }
 }

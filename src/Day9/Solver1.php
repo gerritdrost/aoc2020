@@ -21,7 +21,7 @@ class Solver1 implements Solver
     public function solve($input): int
     {
         if (is_resource($input)) {
-            $ints = Arrays::intLinesFromHandle($input);
+            $ints = iterator_to_array(int_lines_from_handle($input));
         } elseif (is_array($input)) {
             $ints = $input;
         } else {

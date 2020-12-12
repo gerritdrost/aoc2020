@@ -3,12 +3,11 @@
 namespace GerritDrost\AoC2020\Day11;
 
 use DusanKasan\Knapsack\Collection;
-use GerritDrost\AoC2020\Utils\Arrays;
 
 class Utils
 {
     public static function read($inputHandle): array {
-        $lines = Arrays::linesFromHandle($inputHandle);
+        $lines = iterator_to_array(lines_from_handle($inputHandle));
 
         $w = strlen($lines[0]);
         $h = count($lines);

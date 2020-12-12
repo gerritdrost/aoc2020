@@ -24,7 +24,7 @@ class SeatDecoder
             };
         };
 
-        $chars = Strings::bytesFromString($code);
+        $chars = bytes_from_string($code);
 
         [$rowRange, $colRange] = Collection
             ::from($chars)

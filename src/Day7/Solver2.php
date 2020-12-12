@@ -4,13 +4,12 @@ namespace GerritDrost\AoC2020\Day7;
 
 use DusanKasan\Knapsack\Collection;
 use GerritDrost\AoC2020\Solver;
-use GerritDrost\AoC2020\Utils\Generators;
 
 class Solver2 implements Solver
 {
     public function solve($inputHandle): int
     {
-        $lines = Generators::linesFromHandle($inputHandle);
+        $lines = lines_from_handle($inputHandle);
 
         $parsed = Collection::from($lines)
             ->map(fn ($l) => explode(' bags contain ', $l, 2))

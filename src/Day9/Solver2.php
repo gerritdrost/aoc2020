@@ -18,7 +18,7 @@ class Solver2 implements Solver
 
     public function solve($inputHandle): int
     {
-        $ints = Arrays::intLinesFromHandle($inputHandle);
+        $ints = iterator_to_array(int_lines_from_handle($inputHandle));
 
         // Use the solver of part 1 to get the required sum
         $requiredSum = $this->solver1->solve($ints);

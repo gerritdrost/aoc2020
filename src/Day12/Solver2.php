@@ -5,7 +5,7 @@ namespace GerritDrost\AoC2020\Day12;
 use DusanKasan\Knapsack\Collection;
 use GerritDrost\AoC2020\Solver;
 
-class Solver1 implements Solver
+class Solver2 implements Solver
 {
     public function solve($inputHandle): int
     {
@@ -20,16 +20,20 @@ class Solver1 implements Solver
             // For all R/L-actions, replace them with action F0 and set delta direction. Leave rest untouched.
             // We now only have actions 'F', 'N', 'E', 'S', 'W'
             ->map(
-                fn ($a) => match ($a[0]) {
-                    'R' => ['F', 0, $a[1] / 90],
-                    'L' => ['F', 0, 4 - ($a[1] / 90)],
-                    default => $a
-                }
+                fn ($a) => using(...$a)(
+                    fn ($action, $val) => match ($action) {
+                        'R' => ['F', 0, $val / 90],
+                        'L' => ['F', 0, 4 - ($val / 90)],
+                        default => [$action, $val]
+                    }
+                )
             )
             //
             // Turn [action, value, delta direction] into [action, value, direction]. Initial direction is E (1).
             ->reductions(
-                fn ($tmp, $a) => [$a[0], $a[1], ($tmp[2] + $a[2]) % 4],
+                fn ($tmp, $a) => using($tmp[2], ...$a)(
+                    fn ($dir, $action, $val, $deltaDir) => [$action, $val, ($dir + $deltaDir) % 4]
+                ),
                 ['F', 0, 1]
             )
             //
@@ -37,9 +41,9 @@ class Solver1 implements Solver
             // We now only have action 'N', 'E', 'S', 'W'
             ->map(
                 fn ($a) => using(...$a)(
-                    fn ($action, $value, $direction) => match ($action) {
-                        'F' => [C::DIRECTIONS[$direction], $value],
-                        default => [$action, $value]
+                    fn ($action, $val, $dir) => match ($action) {
+                        'F' => [C::DIRECTIONS[$dir], $val],
+                        default => [$action, $val]
                     }
                 )
             )
@@ -50,7 +54,7 @@ class Solver1 implements Solver
             // Translate all instructions into coordinate deltas
             ->map(
                 fn ($a) => using(C::DELTAS[$a[0]], $a[1])(
-                    fn ($delta, $v) => [$delta[0] * $v, $delta[1] * $v]
+                    fn ($delta, $val) => [$delta[0] * $val, $delta[1] * $val]
                 )
             )
             //

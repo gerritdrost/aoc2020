@@ -3,13 +3,12 @@
 namespace GerritDrost\AoC2020\Day2;
 
 use DusanKasan\Knapsack\Collection;
-use GerritDrost\AoC2020\Utils\Generators;
 use GerritDrost\AoC2020\Solver;
 
 class Solver1 implements Solver
 {
     public function solve($inputHandle): int
-    {$lineGenerator = Generators::linesFromHandle($inputHandle);
+    {$lineGenerator = lines_from_handle($inputHandle);
 
         $checkPassword = function (InputEntry $inputEntry) {
             $count = mb_substr_count($inputEntry->password, $inputEntry->requiredChar);
